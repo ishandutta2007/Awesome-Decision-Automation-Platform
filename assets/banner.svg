@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <!-- Glowing Accent Gradients -->
+    <linearGradient id="accentGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="accentGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+
+    <!-- Node Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <style>
+      .title { font-family: system-ui, -apple-system, sans-serif; font-weight: 800; font-size: 46px; fill: #ffffff; }
+      .subtitle { font-family: system-ui, -apple-system, sans-serif; font-weight: 500; font-size: 20px; fill: #94a3b8; }
+      .tag { font-family: system-ui, -apple-system, sans-serif; font-weight: 600; font-size: 13px; fill: #38bdf8; letter-spacing: 1.5px; text-transform: uppercase; }
+      
+      /* Dynamic Animated Pulse Rings */
+      .pulse-ring {
+        transform-origin: center;
+        animation: pulse 3s infinite cubic-bezier(0.4, 0, 0.6, 1);
+      }
+      @keyframes pulse {
+        0% { transform: scale(0.95); opacity: 0.8; }
+        50% { transform: scale(1.05); opacity: 0.3; }
+        100% { transform: scale(0.95); opacity: 0.8; }
+      }
+
+      /* Animated Flow Lines */
+      .flow-line {
+        stroke-dasharray: 10 15;
+        animation: dash 20s linear infinite;
+      }
+      @keyframes dash {
+        to { stroke-dashoffset: -1000; }
+      }
+
+      /* Dynamic Node Orbs */
+      .orb-1 { animation: float1 6s ease-in-out infinite; }
+      .orb-2 { animation: float2 8s ease-in-out infinite; }
+      @keyframes float1 {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-12px); }
+      }
+      @keyframes float2 {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(12px); }
+      }
+    </style>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="340" fill="url(#bgGrad)" rx="16"/>
+
+  <!-- Background Decorative Grid Grid Lines -->
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+    <line x1="0" y1="60" x2="1200" y2="60"/>
+    <line x1="0" y1="120" x2="1200" y2="120"/>
+    <line x1="0" y1="180" x2="1200" y2="180"/>
+    <line x1="0" y1="240" x2="1200" y2="240"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="200" y1="0" x2="200" y2="340"/>
+    <line x1="400" y1="0" x2="400" y2="340"/>
+    <line x1="600" y1="0" x2="600" y2="340"/>
+    <line x1="800" y1="0" x2="800" y2="340"/>
+    <line x1="1000" y1="0" x2="1000" y2="340"/>
+  </g>
+
+  <!-- DYNAMIC / ANIMATED BACKGROUND ELEMENTS (Positioned safely behind/around text foreground) -->
+  
+  <!-- Right Side Decision Node Graph & Flow Animation -->
+  <g transform="translate(720, 30)">
+    <!-- Flow Connection Paths -->
+    <path class="flow-line" d="M 50 140 L 160 70 L 290 70 L 380 140" stroke="url(#accentGrad1)" stroke-width="3" fill="none" opacity="0.6"/>
+    <path class="flow-line" d="M 50 140 L 160 210 L 290 210 L 380 140" stroke="url(#accentGrad2)" stroke-width="3" fill="none" opacity="0.6"/>
+    <path class="flow-line" d="M 160 70 L 290 210" stroke="#818cf8" stroke-width="2" fill="none" opacity="0.3"/>
+    
+    <!-- Decision Node 1 (Input) -->
+    <g class="orb-1" transform="translate(50, 140)">
+      <circle class="pulse-ring" r="28" fill="#6366f1" opacity="0.2"/>
+      <circle r="16" fill="#1e1b4b" stroke="#6366f1" stroke-width="3" filter="url(#glow)"/>
+      <text x="0" y="4" font-family="sans-serif" font-size="10" fill="#a5b4fc" text-anchor="middle" font-weight="bold">IN</text>
+    </g>
+
+    <!-- Decision Node 2 (Rule Matrix A) -->
+    <g class="orb-2" transform="translate(160, 70)">
+      <rect x="-20" y="-20" width="40" height="40" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="2" filter="url(#glow)"/>
+      <path d="M -8 -4 L 0 4 L 8 -4" stroke="#38bdf8" stroke-width="2" fill="none"/>
+    </g>
+
+    <!-- Decision Node 3 (Rule Matrix B) -->
+    <g class="orb-1" transform="translate(160, 210)">
+      <rect x="-20" y="-20" width="40" height="40" rx="8" fill="#0f172a" stroke="#a855f7" stroke-width="2" filter="url(#glow)"/>
+      <circle r="6" fill="#a855f7"/>
+    </g>
+
+    <!-- Decision Node 4 (Evaluation Core) -->
+    <g class="orb-2" transform="translate(290, 70)">
+      <circle r="22" fill="#1e1b4b" stroke="#818cf8" stroke-width="3" filter="url(#glow)"/>
+      <text x="0" y="4" font-family="sans-serif" font-size="11" fill="#cbd5e1" text-anchor="middle" font-weight="bold">DMN</text>
+    </g>
+
+    <!-- Decision Node 5 (Execution Engine) -->
+    <g class="orb-1" transform="translate(290, 210)">
+      <circle r="22" fill="#1e1b4b" stroke="#34d399" stroke-width="3" filter="url(#glow)"/>
+      <text x="0" y="4" font-family="sans-serif" font-size="11" fill="#34d399" text-anchor="middle" font-weight="bold">RULE</text>
+    </g>
+
+    <!-- Decision Node 6 (Output / Action) -->
+    <g transform="translate(380, 140)">
+      <circle class="pulse-ring" r="32" fill="#22c55e" opacity="0.2"/>
+      <circle r="20" fill="#064e3b" stroke="#22c55e" stroke-width="3" filter="url(#glow)"/>
+      <path d="M -6 0 L -2 4 L 6 -4" stroke="#4ade80" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- Left Accent Glowing Bar -->
+  <rect x="50" y="65" width="6" height="210" rx="3" fill="url(#accentGrad1)"/>
+
+  <!-- FOREGROUND TEXT & HEADINGS (Guaranteed high visibility and no obstruction) -->
+  <g transform="translate(75, 0)">
+    <!-- Category Tag -->
+    <text x="0" y="105" class="tag">⚡ Enterprise &amp; Open-Source Ecosystem</text>
+    
+    <!-- Main Title -->
+    <text x="0" y="160" class="title">Decision Automation Platforms</text>
+    
+    <!-- Subtitle -->
+    <text x="0" y="200" class="subtitle">Business Rule Engines (BRMS) • DMN Decision Models • Process Orchestration</text>
+    
+    <!-- Feature Pill Tags in Foreground -->
+    <g transform="translate(0, 230)">
+      <!-- Pill 1 -->
+      <rect x="0" y="0" width="135" height="32" rx="16" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+      <text x="67" y="20" font-family="sans-serif" font-size="12" fill="#cbd5e1" text-anchor="middle" font-weight="600">🎯 DMN 1.5 Spec</text>
+      
+      <!-- Pill 2 -->
+      <rect x="147" y="0" width="150" height="32" rx="16" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+      <text x="222" y="20" font-family="sans-serif" font-size="12" fill="#cbd5e1" text-anchor="middle" font-weight="600">⚙️ Rule Evaluation</text>
+
+      <!-- Pill 3 -->
+      <rect x="309" y="0" width="165" height="32" rx="16" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+      <text x="391" y="20" font-family="sans-serif" font-size="12" fill="#cbd5e1" text-anchor="middle" font-weight="600">🚀 Low-Code &amp; Cloud</text>
+    </g>
+  </g>
+</svg>
